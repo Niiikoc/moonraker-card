@@ -5,28 +5,32 @@ class MoonrakerCard extends HTMLElement {
     }
   
     setConfig(config) {
+      if (!config.entities) {
+        throw new Error('You need to define entities');
+      }
       this.config = config;
-      this.renderCard(); // Call render initially with config
-    }
-  
-    set hass(hass) {
-      this._hass = hass;
-      // Ensure the card renders whenever hass is updated
       this.renderCard();
     }
   
+    set hass(hass) {
+      this._hass = hass; // Store the hass object
+      this.renderCard(); // Call render whenever hass is updated
+    }
+  
     renderCard() {
-      if (!this.shadowRoot || !this._hass) return; // Ensure shadowRoot and _hass are defined
+      if (!this.shadowRoot || !this._hass) return; // Ensure both are defined
   
       const entities = this.config.entities;
   
-      // Safely access states with error handling
+      // Safely access states, log the states for debugging
       const status = this._hass.states[entities.status]?.state || 'Unknown';
       const temperature = this._hass.states[entities.temperature]?.state || '--';
       const progress = this._hass.states[entities.progress]?.state || '--';
       const currentLayer = this._hass.states[entities.current_layer]?.state || '--';
   
-      // Updated CSS and HTML structure
+      console.log("Current states:", this._hass.states); // Debugging line
+  
+      // Render the card
       this.shadowRoot.innerHTML = `
         <style>
           ha-card {
