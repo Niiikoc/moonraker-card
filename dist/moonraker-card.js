@@ -21,6 +21,10 @@ class MoonrakerCard extends HTMLElement {
       if (!this.shadowRoot || !this._hass) return; // Ensure both are defined
   
       const entities = this.config.entities;
+      const printerIcon = "./images/printer_icon.png";
+      const temperatureIcon = "./images/temperature_icon.png";
+      const progressIcon = "./images/progress_icon.png";
+      const layerIcon = "./images/layer_icon.png";
   
       // Safely access states, log the states for debugging
       const status = this._hass.states[entities.status]?.state || 'Unknown';
@@ -76,20 +80,20 @@ class MoonrakerCard extends HTMLElement {
         </style>
         <ha-card>
           <div class="status">
-            <img class="icon" src="./images/printer_icon.png" alt="Printer" />
+            <img class="icon" src="${printerIcon}" alt="Printer" />
             Printer Status: ${status}
           </div>
           <div class="info">
             <div class="info-item">
-              <img class="icon" src="./images/temperature_icon.png" alt="Temperature" />
+              <img class="icon" src="${temperatureIcon}" alt="Temperature" />
               <span>Temperature: ${temperature} °C</span>
             </div>
             <div class="info-item">
-              <img class="icon" src="./images/progress_icon.jpg" alt="Progress" />
+              <img class="icon" src="${progressIcon}" alt="Progress" />
               <span>Progress: ${progress}%</span>
             </div>
             <div class="info-item">
-              <img class="icon" src="./images/layer_icon.png" alt="Layer" />
+              <img class="icon" src="${layerIcon}" alt="Layer" />
               <span>Current Layer: ${currentLayer}</span>
             </div>
           </div>

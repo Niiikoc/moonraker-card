@@ -1,9 +1,8 @@
 {
-    "name": "Moonraker Card",
-    "content_in_root": false,
-    "render_readme": true,
-    "domains": ["lovelace"],
-    "country": ["us"],
-    "topics": ["3d-printing", "klipper", "moonraker"],
-    "authors": ["your-github-username"]
-  }
+  "name": "Moonraker Card",
+  "description": "A custom card for displaying Moonraker 3D printer information.",
+  "version": "1.0.0",
+  "source": "github",
+  "category": "frontend",
+  "keywords": ["homeassistant", "hacs", "moonraker"]
+}
