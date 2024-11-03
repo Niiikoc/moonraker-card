@@ -1,0 +1,9 @@
+{
+    "name": "Moonraker Card",
+    "content_in_root": false,
+    "render_readme": true,
+    "domains": ["lovelace"],
+    "country": ["us"],
+    "topics": ["3d-printing", "klipper", "moonraker"],
+    "authors": ["your-github-username"]
+  }
