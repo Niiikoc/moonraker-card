@@ -1,23 +1,39 @@
 class MoonrakerCard extends HTMLElement {
+    constructor() {
+      super();
+      this.attachShadow({ mode: 'open' });
+    }
+  
     setConfig(config) {
       this.config = config;
-      this.attachShadow({ mode: "open" });
       this.renderCard();
     }
   
+    // Define the `hass` setter to receive the Home Assistant instance
     set hass(hass) {
       this._hass = hass;
-  
-      if (this.config.entities) {
-        this.renderCard();
-      }
+      // Render or update the card whenever hass is set
+      this.renderCard();
     }
   
+    // Method to render the card
     renderCard() {
       if (!this.shadowRoot) return;
       const entities = this.config.entities;
   
-      // Create a shadow DOM template with HTML and style
+      // Check if `hass` is defined before trying to access it
+      if (!this._hass) {
+        console.error("Home Assistant instance (hass) is not available.");
+        return;
+      }
+  
+      // Example usage of hass states
+      const status = this._hass.states[entities.status]?.state || 'Unknown';
+      const temperature = this._hass.states[entities.temperature]?.state || '--';
+      const progress = this._hass.states[entities.progress]?.state || '--';
+      const currentLayer = this._hass.states[entities.current_layer]?.state || '--';
+  
+      // Define the card's HTML structure and styles
       this.shadowRoot.innerHTML = `
         <style>
           ha-card {
@@ -42,20 +58,20 @@ class MoonrakerCard extends HTMLElement {
         </style>
         <ha-card>
           <div class="status">
-            Printer Status: ${hass.states[entities.status]?.state || "Unknown"}
+            Printer Status: ${status}
           </div>
           <div class="info">
             <div class="info-item">
               <span>Temperature:</span>
-              <span>${hass.states[entities.temperature]?.state || "--"} °C</span>
+              <span>${temperature} °C</span>
             </div>
             <div class="info-item">
               <span>Progress:</span>
-              <span>${hass.states[entities.progress]?.state || "--"}%</span>
+              <span>${progress}%</span>
             </div>
             <div class="info-item">
               <span>Current Layer:</span>
-              <span>${hass.states[entities.current_layer]?.state || "--"}</span>
+              <span>${currentLayer}</span>
             </div>
           </div>
         </ha-card>
@@ -67,6 +83,5 @@ class MoonrakerCard extends HTMLElement {
     }
   }
   
-  // Register the custom card with Home Assistant
-  customElements.define("moonraker-card", MoonrakerCard);
+  customElements.define('moonraker-card', MoonrakerCard);
   
