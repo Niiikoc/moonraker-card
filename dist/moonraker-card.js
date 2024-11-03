@@ -85,7 +85,7 @@ class MoonrakerCard extends HTMLElement {
               <span>Temperature: ${temperature} °C</span>
             </div>
             <div class="info-item">
-              <img class="icon" src="./images/progress_icon.png" alt="Progress" />
+              <img class="icon" src="./images/progress_icon.jpg" alt="Progress" />
               <span>Progress: ${progress}%</span>
             </div>
             <div class="info-item">
