@@ -21,6 +21,7 @@ class MoonrakerCard extends HTMLElement {
       if (!this.shadowRoot || !this._hass) return; // Ensure both are defined
   
       const entities = this.config.entities;
+      const iconDirectory = this.config.icons || "/hacsfiles/moonraker-card";
   
       // Safely access states, log the states for debugging
       const status = this._hass.states[entities.status]?.state || 'Unknown';
@@ -74,23 +75,21 @@ class MoonrakerCard extends HTMLElement {
           }
         </style>
         <ha-card>
-          <div class="status">
-            <img class="icon" src="/config/www/community/moonraker-card/images/printer_icon.png" alt="Printer" />
-            Printer Status: ${status}
+          <div class="status" id="status" style="background-color: #FDD64B;">
+            <img src="${iconDirectory}/printer_icon.png"></img>
+            <span>Printer Status: ${status}</span>
           </div>
-          <div class="info">
-            <div class="info-item">
-              <img class="icon" src="/config/www/community/moonraker-card/images/temperature_icon.png" alt="Temperature" />
-              <span>Temperature: ${temperature} °C</span>
-            </div>
-            <div class="info-item">
-              <img class="icon" src="/config/www/community/moonraker-card/images/progress_icon.jpg" alt="Progress" />
-              <span>Progress: ${progress}%</span>
-            </div>
-            <div class="info-item">
-              <img class="icon" src="/config/www/community/moonraker-card/images/layer_icon.png" alt="Layer" />
-              <span>Current Layer: ${currentLayer}</span>
-            </div>
+          <div class="temperature" id="temperature" style="background-color: #FDD64B;">
+            <img src="${iconDirectory}/temperature_icon.png"></img>
+            <span>Temperature: ${temperature} °C</span>
+          </div>
+          <div class="progress" id="progress" style="background-color: #FDD64B;">
+            <img src="${iconDirectory}/progress_icon.jpg"></img>
+            <span>Progress: ${progress}%</span>
+          </div>
+          <div class="currentLayer" id="currentLayer" style="background-color: #FDD64B;">
+            <img src="${iconDirectory}/layer_icon.png"></img>
+            <span>Current Layer: ${currentLayer}</span>
           </div>
         </ha-card>
       `;
