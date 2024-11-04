@@ -21,10 +21,10 @@ class MoonrakerCard extends HTMLElement {
       if (!this.shadowRoot || !this._hass) return; // Ensure both are defined
   
       const entities = this.config.entities;
-      const printerIcon = "./images/printer_icon.png";
-      const temperatureIcon = "./images/temperature_icon.png";
-      const progressIcon = "./images/progress_icon.png";
-      const layerIcon = "./images/layer_icon.png";
+      const printerIcon = "./printer_icon.png";
+      const temperatureIcon = "./temperature_icon.png";
+      const progressIcon = "./progress_icon.png";
+      const layerIcon = "./layer_icon.png";
   
       // Safely access states, log the states for debugging
       const status = this._hass.states[entities.status]?.state || 'Unknown';
