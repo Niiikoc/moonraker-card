@@ -30,67 +30,93 @@ class MoonrakerCard extends HTMLElement {
       const currentLayer = this._hass.states[entities.current_layer]?.state || '--';
   
       console.log("Current states:", this._hass.states); // Debugging line
-  
+
       // Render the card
       this.shadowRoot.innerHTML = `
         <style>
-          ha-card {
-            padding: 20px;
-            background-color: #333;
-            color: #fff;
+            ha-card {
+            padding: 16px;
+            background-color: #f2f2f2;
             border-radius: 12px;
-            background-size: cover;
-            background-position: center;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-          }
-          .status {
-            font-size: 1.5em;
-            font-weight: bold;
-            color: #ff9800;
-            margin-bottom: 16px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-family: Arial, sans-serif;
             text-align: center;
-          }
-          .info {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 12px;
-            padding: 8px;
-          }
-          .info-item {
+            color: #333;
+            }
+            .header {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 8px;
+            }
+            .aqi-container {
             display: flex;
             align-items: center;
             justify-content: space-between;
+            background-color: #a8e5a2;
+            border-radius: 12px;
             padding: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 8px;
-          }
-          .info-item span {
+            color: #333;
+            }
+            .aqi-container .icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            }
+            .aqi-info {
+            flex: 1;
+            text-align: center;
+            }
+            .aqi-info .aqi-value {
+            font-size: 2em;
+            font-weight: bold;
+            }
+            .aqi-info .aqi-status {
             font-size: 1.1em;
-          }
-          .icon {
+            color: #fff;
+            font-weight: bold;
+            }
+            .extra-info {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 8px;
+            color: #777;
+            }
+            .extra-info-item {
+            display: flex;
+            align-items: center;
+            }
+            .extra-info-item img {
             width: 24px;
             height: 24px;
             margin-right: 8px;
-            filter: invert(1);
-          }
+            }
         </style>
         <ha-card>
-          <div class="status" id="status" style="background-color: #FDD64B;">
-            <img src="${iconDirectory}/printer_icon.png"></img>
-            <span>Printer Status: ${status}</span>
-          </div>
-          <div class="temperature" id="temperature" style="background-color: #FDD64B;">
-            <img src="${iconDirectory}/temperature_icon.png"></img>
-            <span>Temperature: ${temperature} °C</span>
-          </div>
-          <div class="progress" id="progress" style="background-color: #FDD64B;">
-            <img src="${iconDirectory}/progress_icon.jpg"></img>
-            <span>Progress: ${progress}%</span>
-          </div>
-          <div class="currentLayer" id="currentLayer" style="background-color: #FDD64B;">
-            <img src="${iconDirectory}/layer_icon.png"></img>
-            <span>Current Layer: ${currentLayer}</span>
-          </div>
+            <div class="header">Printer Status</div>
+            <div class="extra-info">
+            <div class="status" id="status" style="background-color: #FDD64B;">
+                <img src="${iconDirectory}/printer_icon.png"></img>
+                <span>Printer Status: ${status}</span>
+            </div>
+            <div class="extra-info-item">
+                <img src="${iconDirectory}/temperature_icon.png" alt="Temperature Icon" width="40" height="40" />
+                <span>${temperature}</span>
+            </div>
+            <div class="extra-info-item">
+                <img src="${iconDirectory}/humidity_icon.png" alt="Humidity Icon" width="40" height="40" />
+                <span>${humidity}</span>
+            </div>
+            <div class="extra-info-item">
+                <img src="${iconDirectory}/wind_icon.png" alt="Wind Speed Icon" width="40" height="40" />
+                <span>${windSpeed}</span>
+            </div>
+            </div>
         </ha-card>
       `;
     }
