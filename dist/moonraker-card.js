@@ -38,7 +38,6 @@ class MoonrakerCard extends HTMLElement {
             background-color: #333;
             color: #fff;
             border-radius: 12px;
-            background-image: url("./images/3d_printer_bg.jpg");
             background-size: cover;
             background-position: center;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
