@@ -75,20 +75,20 @@ class MoonrakerCard extends HTMLElement {
         </style>
         <ha-card>
           <div class="status">
-            <img class="icon" src="./images/printer_icon.png" alt="Printer" />
+            <img class="icon" src="/config/www/community/moonraker-card/images/printer_icon.png" alt="Printer" />
             Printer Status: ${status}
           </div>
           <div class="info">
             <div class="info-item">
-              <img class="icon" src="./images/temperature_icon.png" alt="Temperature" />
+              <img class="icon" src="/config/www/community/moonraker-card/images/temperature_icon.png" alt="Temperature" />
               <span>Temperature: ${temperature} °C</span>
             </div>
             <div class="info-item">
-              <img class="icon" src="./images/progress_icon.jpg" alt="Progress" />
+              <img class="icon" src="/config/www/community/moonraker-card/images/progress_icon.jpg" alt="Progress" />
               <span>Progress: ${progress}%</span>
             </div>
             <div class="info-item">
-              <img class="icon" src="./images/layer_icon.png" alt="Layer" />
+              <img class="icon" src="/config/www/community/moonraker-card/images/layer_icon.png" alt="Layer" />
               <span>Current Layer: ${currentLayer}</span>
             </div>
           </div>
