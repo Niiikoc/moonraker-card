@@ -137,6 +137,10 @@ class MoonrakerCard extends HTMLElement {
   }
 
   render() {
+
+    const iconDirectory = this.config.icons || "/hacsfiles/moonraker-card";
+    const imagePath = iconDirectory + "/V2.4.jpg";
+
     const card = document.createElement('ha-card');
     card.style.borderRadius = '20px';
 
@@ -163,7 +167,7 @@ class MoonrakerCard extends HTMLElement {
           cards: [
             {
               type: 'picture',
-              image: '/local/images/V2.4.jpg',
+              image: imagePath,
               tap_action: { action: 'none' },
               hold_action: { action: 'none' },
               style: 'ha-card { --paper-card-background-color: rgba(0, 0, 0, 0.0); --ha-card-background: rgba(0, 0, 0, 0.0); --ha-card-box-shadow: none; }',
